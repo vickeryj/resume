@@ -1,4 +1,4 @@
-// Full CV (complete experience) framed for Principal Engineer roles.
+// Full CV (all experience + `more` bullets) framed for Principal Engineer roles.
 #import "../lib/template.typ": render
 #import "../content/profile.typ": profile
 #import "../content/experience.typ": jobs
@@ -8,13 +8,13 @@
   profile: profile,
   role-title: "Principal Engineer",
   summary: [
-    Hands-on technical leader with 15+ years building and scaling distributed
-    systems. I set technical direction across teams, raise the engineering bar
-    through standards and mentorship, and stay close to the code — driving the
-    highest-leverage architectural decisions from design through delivery.
+    Purveyor of boringly effective technology solutions for over 20 years: root
+    cause fixes that stay fixed, systems that page only when a human is actually
+    needed. I'm hands-on by default and delegate as scale demands. My experience
+    runs from seed-stage startups to Capital One.
   ],
-  jobs: jobs,
   skills: skills,
+  jobs: jobs,
   education: education,
   full: true,
 )

@@ -8,9 +8,9 @@ history, several targets — so a change to your experience updates every PDF.
 ```
 lib/template.typ        Presentation: layout, fonts, colors, section rendering
 content/
-  profile.typ           Name, contact info, links (shared)
+  profile.typ           Name, contact info (shared)
   experience.typ        Full work history — the single source of truth
-  skills.typ            Skills groups and education (shared)
+  skills.typ            Skills list and education (shared)
 targets/                One file per output; picks a role angle + résumé vs CV
   principal-engineer.typ         Condensed, for Principal Engineer roles
   vp-engineering.typ             Condensed, for VP of Engineering roles
@@ -46,6 +46,12 @@ The **role angle** comes from each `targets/*.typ` file, which sets the
 `role-title` and a tailored `summary`. The condensed résumés and their CV
 counterparts share the same summary text — edit both if you want them to
 diverge.
+
+> **Note:** the current history lists every role with `recent: true` and no
+> `more` bullets, so the `-cv` targets are byte-for-byte identical to the plain
+> résumés today. The distinction activates as soon as you mark an older role
+> `recent: false` (drops it from the résumé, keeps it on the CV) or add `more:`
+> bullets (CV-only detail).
 
 ## Adding a new target
 

@@ -1,4 +1,4 @@
-// Full CV (complete experience) framed for VP of Engineering roles.
+// Full CV (all experience + `more` bullets) framed for VP of Engineering roles.
 #import "../lib/template.typ": render
 #import "../content/profile.typ": profile
 #import "../content/experience.typ": jobs
@@ -8,13 +8,14 @@
   profile: profile,
   role-title: "Vice President of Engineering",
   summary: [
-    Engineering leader who scales organizations, not just systems. I've grown
-    and led multi-team orgs, owned delivery and reliability at scale, and
-    partnered with product and executive leadership to turn strategy into
-    shipped outcomes — while keeping engineers growing and retained.
+    Engineering leader who scales organizations, not just systems. Over 20 years
+    hands-on, I've built and led high-performing teams from seed-stage startups
+    to Capital One — growing orgs, standing up QA and remote offices, and turning
+    under-maintained systems into reliable ones. Hands-on by default; I delegate
+    as scale demands.
   ],
-  jobs: jobs,
   skills: skills,
+  jobs: jobs,
   education: education,
   full: true,
 )
