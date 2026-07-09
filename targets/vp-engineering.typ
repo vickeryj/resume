@@ -1,18 +1,19 @@
 // Résumé aimed at VP of Engineering roles.
 #import "../lib/template.typ": render
 #import "../content/profile.typ": profile
-#import "../content/experience.typ": jobs
-#import "../content/skills.typ": skills, education
+#import "../content/experience-vpe.typ": jobs, skills
+#import "../content/skills.typ": education
 
 #render(
   profile: profile,
   role-title: "Vice President of Engineering",
   summary: [
-    Engineering leader who scales organizations, not just systems. Over 20 years
-    hands-on, I've built and led high-performing teams from seed-stage startups
-    to Capital One — growing orgs, standing up QA and remote offices, and turning
-    under-maintained systems into reliable ones. Hands-on by default; I delegate
-    as scale demands.
+    Purveyor of boringly effective technology solutions for over 20 years: root
+    cause fixes that stay fixed, systems that page only when a human is actually
+    needed. I've led engineering as a CTO and Director — growing orgs, hiring
+    and developing managers, opening an international office, standing up QA
+    from scratch — and spent recent years in Principal IC roles staying sharp
+    on the systems my teams ship. Engineer first, manager second.
   ],
   skills: skills,
   jobs: jobs,
