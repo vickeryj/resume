@@ -5,6 +5,5 @@
   phone: "919-412-0354",
   email: "josh@vickeryj.com",
   location: "Queens, NY",
-  // Optional; rendered after the location if present:
-  // links: ((label: "github.com/vickeryj", url: "https://github.com/vickeryj"),),
+  links: ((label: "linkedin.com/in/vickeryj", url: "https://linkedin.com/in/vickeryj"),),
 )
