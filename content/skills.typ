@@ -1,10 +1,19 @@
 // Skills (rendered as the italic inline list under the summary) and education.
-// Both are shared; a target can override by passing its own lists to render().
+// Education is shared; the skills line is ordered per target tag, since the
+// ordering itself is part of the pitch.
 
-#let skills = (
-  "TypeScript", "Python", "Ruby", "Swift", "Go", "Scala",
-  "Kafka", "DynamoDB", "AWS", "OTel",
+#let skills-by-target = (
+  pe: (
+    "TypeScript", "Python", "Ruby", "Swift", "Go", "Scala",
+    "Kafka", "DynamoDB", "AWS", "OTel",
+  ),
+  vpe: (
+    "TypeScript", "Swift", "Python", "Go", "Ruby",
+    "Kafka", "DynamoDB", "AWS", "OTel", "AI-assisted SDLC",
+  ),
 )
+
+#let skills-for(tag) = skills-by-target.at(tag)
 
 #let education = (
   (

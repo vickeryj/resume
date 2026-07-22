@@ -1,8 +1,8 @@
 // Résumé aimed at Principal Engineer roles. Reproduces the source PE résumé.
 #import "../lib/template.typ": render
 #import "../content/profile.typ": profile
-#import "../content/experience.typ": jobs
-#import "../content/skills.typ": skills, education
+#import "../content/experience.typ": jobs-for
+#import "../content/skills.typ": skills-for, education
 
 #render(
   profile: profile,
@@ -13,8 +13,8 @@
     needed. I'm hands-on by default and delegate as scale demands. My experience
     runs from seed-stage startups to Capital One.
   ],
-  skills: skills,
-  jobs: jobs,
+  skills: skills-for("pe"),
+  jobs: jobs-for("pe"),
   education: education,
   full: false,
 )

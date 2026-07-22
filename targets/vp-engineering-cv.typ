@@ -1,8 +1,8 @@
 // Full CV (all experience + `more` bullets) framed for VP of Engineering roles.
 #import "../lib/template.typ": render
 #import "../content/profile.typ": profile
-#import "../content/experience-vpe.typ": jobs, skills
-#import "../content/skills.typ": education
+#import "../content/experience.typ": jobs-for
+#import "../content/skills.typ": skills-for, education
 
 #render(
   profile: profile,
@@ -15,8 +15,8 @@
     from scratch — and spent recent years in Principal IC roles staying sharp
     on the systems my teams ship. Engineer first, manager second.
   ],
-  skills: skills,
-  jobs: jobs,
+  skills: skills-for("vpe"),
+  jobs: jobs-for("vpe"),
   education: education,
   full: true,
 )
