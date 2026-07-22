@@ -17,6 +17,7 @@
 // and AI adoption; the PE angle emphasizes depth of IC work.
 
 #import "../lib/variants.typ": variant, resolve-jobs
+#import "older_experience.typ": older-jobs
 
 #let jobs = (
   (
@@ -136,11 +137,18 @@
       ),
     ),
   ),
-  (
-    heading: "Earlier Career — 2002 - 2013",
-    lead: "Early iPhone-era mobile engineer and lead: brought PatientKeeper's Mobile Clinical Results to market on iPhone and iPad leading a team of 6, rewrote the WHERE app from scratch, and shipped a highly optimized address book library at CircleBack that dropped into existing apps. As an independent contractor, built the Harvest Time Tracker, an Oxford dictionary app, and Medaxion's anesthesiology billing app. Before mobile: healthcare and clinical trial systems in Java (21 CFR Part 11 compliant), plus an approximate-matching search engine for audio clips.",
-  ),
+)
+
+// Everything before 2013, compressed into one paragraph. The condensed résumés
+// end here; the CVs list those roles individually instead (older_experience.typ).
+#let earlier-career = (
+  heading: "Earlier Career — 2002 - 2013",
+  lead: "Early iPhone-era mobile engineer and lead: brought PatientKeeper's Mobile Clinical Results to market on iPhone and iPad leading a team of 6, rewrote the WHERE app from scratch, and shipped a highly optimized address book library at CircleBack that dropped into existing apps. As an independent contractor, built the Harvest Time Tracker, an Oxford dictionary app, and Medaxion's anesthesiology billing app. Before mobile: healthcare and clinical trial systems in Java (21 CFR Part 11 compliant), plus an approximate-matching search engine for audio clips.",
 )
 
 // The history resolved for one target tag — this is what targets/*.typ import.
-#let jobs-for(tag) = resolve-jobs(jobs, tag)
+// `full` must match the flag the target passes to render().
+#let jobs-for(tag, full: false) = {
+  let tail = if full { older-jobs } else { (earlier-career,) }
+  resolve-jobs(jobs + tail, tag)
+}

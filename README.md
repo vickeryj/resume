@@ -9,9 +9,10 @@ history, several targets — so a change to your experience updates every PDF.
 lib/template.typ        Presentation: layout, fonts, colors, section rendering
 lib/variants.typ        Per-target tagging (`variant(...)`) and its resolver
 content/
-  profile.typ           Name, contact info (shared)
+  profile.typ           Contact info, skills, education (shared);
+                        role title and summary (per target)
   experience.typ        Full work history — the single source of truth
-  skills.typ            Skills list (per target) and education (shared)
+  older_experience.typ  Pre-2013 roles, spelled out for the CV targets
 targets/                One file per output; picks a role angle + résumé vs CV
   principal-engineer.typ         Condensed, for Principal Engineer roles
   vp-engineering.typ             Condensed, for VP of Engineering roles
@@ -66,10 +67,9 @@ whole list can be the variant:
 ```typ
 highlights: variant(vpe: ("Org-building bullet.", "Another one."))
 ```
- Targets import `jobs-for("pe")` /
-`skills-for("vpe")`; adding a tag means adding its key where the wording
-diverges. Skills live in `content/skills.typ`, one ordered list per tag, since
-the ordering is itself part of the pitch.
+ Targets import `jobs-for("pe")`;
+adding a tag means adding its key where the wording diverges. Skills are one
+shared list in `content/profile.typ` — the same line on every target.
 
 **Résumé vs CV — length.** Within a job:
 
@@ -79,19 +79,26 @@ the ordering is itself part of the pitch.
 Set **`recent: false`** on an older job to drop it from the condensed résumés
 while keeping it on the CVs.
 
-The summary text lives in each `targets/*.typ` file alongside `role-title`. A
-condensed résumé and its CV counterpart share the same summary — edit both if
-you want them to diverge.
+The tail of the history swaps wholesale: résumés end with the one-paragraph
+`earlier-career` entry in `experience.typ`, while the CVs list those pre-2013
+roles individually from `content/older_experience.typ`. That's why targets pass
+the flag twice — `jobs-for("pe", full: true)` alongside `full: true` on
+`render()`; the two must agree.
 
-> **Note:** every role is currently `recent: true` with no `more` bullets, so
-> each `-cv` target is byte-for-byte identical to its plain résumé. That
-> distinction activates as soon as you mark an older role `recent: false` or
-> add `more:` bullets.
+The role title and summary text live in `content/profile.typ`, keyed by tag, so
+a condensed résumé and its CV counterpart automatically share them. To make one
+diverge, pass a literal `role-title:`/`summary:` in that target instead.
+
+> **Note:** every post-2013 role is currently `recent: true` with no `more`
+> bullets, so today the CVs differ from the résumés only in that expanded
+> pre-2013 tail. `recent: false` and `more:` are there when you want more
+> separation.
 
 ## Adding a new target
 
-Copy an existing file in `targets/`, rename it, and change `role-title`,
-`summary`, and the `full` flag. To reuse an existing role angle, keep its tag;
-for a new angle, pick a new tag and add it to the `variant(...)` calls and to
-`skills-by-target` where the wording should differ — anything untagged falls
+Copy an existing file in `targets/`, rename it, and change the tag it asks for
+and the `full` flag. To reuse an existing role angle, keep its tag; for a new
+angle, pick a new tag, add it to `role-title-by-target` and `summary-by-target`
+in `content/profile.typ`, and to the `variant(...)` calls where the wording
+should differ — anything untagged falls
 through to every target. `./build.sh` picks the file up automatically.

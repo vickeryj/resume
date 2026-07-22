@@ -1,20 +1,14 @@
 // Full CV (all experience + `more` bullets) framed for Principal Engineer roles.
 #import "../lib/template.typ": render
-#import "../content/profile.typ": profile
+#import "../content/profile.typ": profile, role-title-for, summary-for, skills, education
 #import "../content/experience.typ": jobs-for
-#import "../content/skills.typ": skills-for, education
 
 #render(
   profile: profile,
-  role-title: "Principal Engineer",
-  summary: [
-    Purveyor of boringly effective technology solutions for over 20 years: root
-    cause fixes that stay fixed, systems that page only when a human is actually
-    needed. I'm hands-on by default and delegate as scale demands. My experience
-    runs from seed-stage startups to Capital One.
-  ],
-  skills: skills-for("pe"),
-  jobs: jobs-for("pe"),
+  role-title: role-title-for("pe"),
+  summary: summary-for("pe"),
+  skills: skills,
+  jobs: jobs-for("pe", full: true),
   education: education,
   full: true,
 )
