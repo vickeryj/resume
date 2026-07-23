@@ -14,10 +14,10 @@ content/
   experience.typ        Full work history — the single source of truth
   older_experience.typ  Pre-2013 roles, spelled out for the CV targets
 targets/                One file per output; picks a role angle + résumé vs CV
-  principal-engineer.typ         Condensed, for Principal Engineer roles
-  vp-engineering.typ             Condensed, for VP of Engineering roles
-  principal-engineer-cv.typ      Full CV, framed for Principal Engineer
-  vp-engineering-cv.typ          Full CV, framed for VP of Engineering
+  Resume-PE.typ                  Condensed, for Principal Engineer roles
+  Resume-VP.typ                  Condensed, for VP of Engineering roles
+  Resume-PE-CV.typ               Full CV, framed for Principal Engineer
+  Resume-VP-CV.typ               Full CV, framed for VP of Engineering
 build.sh                Build driver
 build/                  Generated PDFs (git-ignored)
 ```
@@ -26,8 +26,8 @@ build/                  Generated PDFs (git-ignored)
 
 ```sh
 ./build.sh                     # build every target into build/
-./build.sh vp-engineering      # build just one
-./build.sh --watch vp-engineering   # live-rebuild while editing
+./build.sh Resume-VP           # build just one
+./build.sh --watch Resume-VP        # live-rebuild while editing
 ./build.sh --list              # list targets
 ./build.sh --clean             # delete build/
 ```

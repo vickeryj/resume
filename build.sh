@@ -4,7 +4,7 @@
 #
 # Usage:
 #   ./build.sh                     Build every target into build/
-#   ./build.sh principal-engineer  Build one target (name = targets/<name>.typ)
+#   ./build.sh Resume-PE           Build one target (name = targets/<name>.typ)
 #   ./build.sh --watch <name>      Rebuild a target on every save
 #   ./build.sh --list              List available targets
 #   ./build.sh --clean             Remove the build/ directory
