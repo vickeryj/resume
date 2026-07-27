@@ -28,14 +28,15 @@
     end: "Jun 2026",
     lead: "Trusted technical advisor to the VPE, with influence across a 150-person engineering organization.",
     highlights: (
-      "Designed, prototyped, and oversaw the implementation of an event capture system for inventory data that previously lacked a source of truth and required hundreds of person-hours to reconcile. The system provides enforcement mechanisms against bypass, fully automated reconciliation, and drove data errors to zero.",
+      
       variant(
-        pe: "Created a program for chronically under-owned services that rebuilt institutional knowledge, cut incident remediation times, and surfaced previously hidden work so staffing and product planning reflect reality.",
-        vpe: "Drove pragmatic AI adoption across the org: coached developers on efficient use of AI coding tools (including token-efficient workflows), and built deterministic CI checks to complement AI code review — routing mechanical feedback to fast, cheap, consistent tooling and reserving high-cost, non-deterministic analysis for the problems that actually require it.",
-      ),
-      variant(
-        pe: "Eliminated an entire class of database migration outages and contained recurring Kafka consumer failures to minor incidents by leading continuous incident analysis and implementing root-cause-level fixes, including improved Kafka consumer monitoring.",
-        vpe: "Eliminated an entire class of database migration outages and contained recurring Kafka consumer failures to minor incidents by leading continuous incident analysis and implementing root-cause-level fixes.",
+        pe: ("Designed, prototyped, and oversaw the implementation of an event capture system for inventory data that previously lacked a source of truth and required hundreds of person-hours to reconcile. The system provides enforcement mechanisms against bypass, fully automated reconciliation, and drove data errors to zero.",
+        "Drove pragmatic AI adoption across the org: coached developers on efficient use of AI coding (including token-efficient workflows), and built deterministic CI checks to complement AI code review — routing mechanical feedback to fast, cheap, consistent tooling and reserving high-cost, non-deterministic analysis for the problems that actually require it.",
+        "Eliminated an entire class of database migration outages and contained recurring Kafka consumer failures to minor incidents by leading continuous incident analysis and implementing root-cause-level fixes, including predictive Kafka consumer monitoring.",
+        ),
+        vpe: ("Founded the FinancialOS Engineering team: designed, prototyped, and oversaw the implementation of an event capture system for inventory data that previously lacked a source of truth and required hundreds of person-hours to reconcile. The system provides enforcement mechanisms against bypass, fully automated reconciliation, and drove data errors to zero.",
+        "Created a program for chronically under-owned services that rebuilt institutional knowledge, cut incident remediation times, and surfaced previously hidden work so staffing and product planning reflect reality.",
+        "Eliminated an entire class of database migration outages and contained recurring Kafka consumer failures to minor incidents by leading continuous incident analysis and implementing root-cause-level fixes."),
       ),
     ),
   ),
