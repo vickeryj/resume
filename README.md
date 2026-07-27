@@ -29,8 +29,12 @@ build/                  Generated PDFs (git-ignored)
 ./build.sh Resume-VP           # build just one
 ./build.sh --watch Resume-VP        # live-rebuild while editing
 ./build.sh --list              # list targets
+./build.sh --publish           # build all, then copy PDFs to iCloud
 ./build.sh --clean             # delete build/
 ```
+
+`--publish` copies the built PDFs to `PUBLISH_DIR` (set at the top of
+`build.sh` — your iCloud Drive).
 
 Requires [Typst](https://typst.app): `brew install typst`.
 

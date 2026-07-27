@@ -7,6 +7,7 @@
 #   ./build.sh Resume-PE           Build one target (name = targets/<name>.typ)
 #   ./build.sh --watch <name>      Rebuild a target on every save
 #   ./build.sh --list              List available targets
+#   ./build.sh --publish           Build every target, then copy PDFs to iCloud
 #   ./build.sh --clean             Remove the build/ directory
 #
 set -euo pipefail
@@ -15,6 +16,7 @@ cd "$(dirname "$0")"
 
 TARGETS_DIR="targets"
 OUT_DIR="build"
+PUBLISH_DIR="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
 if ! command -v typst >/dev/null 2>&1; then
   echo "error: typst is not installed. Install it with: brew install typst" >&2
@@ -47,6 +49,14 @@ case "${1:-}" in
   --clean)
     rm -rf "$OUT_DIR"
     echo "removed $OUT_DIR/"
+    ;;
+  --publish)
+    for name in $(list_targets); do
+      build_one "$name"
+    done
+    mkdir -p "$PUBLISH_DIR"
+    cp "$OUT_DIR"/*.pdf "$PUBLISH_DIR"/
+    echo "published → $PUBLISH_DIR/"
     ;;
   --watch)
     name="${2:?usage: ./build.sh --watch <target>}"
