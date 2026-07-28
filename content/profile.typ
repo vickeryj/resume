@@ -36,8 +36,8 @@
 )
 
 #let skills = (
-  "TypeScript", "Python", "Ruby", "Swift", "Go", "Scala",
-  "Kafka", "DynamoDB", "AWS", "OTel", "AI-assisted SDLC",
+  "TypeScript", "Python", "Java", "Ruby", "Swift", "Go", "Scala",
+  "Kafka", "AWS", "OTel", "AI-assisted SDLC",
 )
 
 #let role-title-for(tag) = role-title-by-target.at(tag)

@@ -106,18 +106,17 @@
     location: "New York, NY",
     start: "Jun 2016",
     end: "Oct 2020",
-    // PE keeps this as one narrative paragraph; VPE breaks the org-building
-    // work out into bullets.
-    lead: variant(
-      pe: "Initially brought on to build the company's first iOS app, after completing the first release I was invited to take over the engineering department based on my rapid understanding of the team function, the backend codebase, and company direction. In the years following I built the engineering organization to three high performing teams, created a QA department and opened a successful Engineering office in Belfast, all while remaining hands-on.",
-      vpe: "Joined to build the company's first iOS app; invited to take over engineering after the first release. Led the department for four years while staying hands-on in the codebase.",
-    ),
+    lead: "Joined to build the company's first iOS app; invited to take over engineering after the first release. Led the department for four years while staying hands-on in the codebase.",
     highlights: variant(
       vpe: (
         "Grew engineering from 4 to 25 engineers across three teams, hiring and developing 3 engineering managers, and building the interview and leveling processes to support the growth.",
         "Opened and scaled a successful engineering office in Belfast — sourcing leadership, establishing hiring pipelines, and integrating a remote team into a NYC-centered engineering culture years before remote was default.",
         "Created the company's QA department from zero: hired its leadership, defined its charter, and integrated it into the development process.",
         "Remained a working engineer throughout — designed and oversaw the replacement of the commercial real estate data ingestion pipeline, and regularly shipped iOS, Rails, and React code — while setting technical direction for the platform.",
+      ),
+      pe: (
+        "Designed, prototyped, and oversaw the replacement of the commercial real estate data ingestion pipeline.",
+        "Regularly shipped iOS, Rails, and React code while setting technical direction for the platform.",
       ),
     ),
   ),
