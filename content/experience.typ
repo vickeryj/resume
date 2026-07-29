@@ -148,7 +148,17 @@
 
 // The history resolved for one target tag — this is what targets/*.typ import.
 // `full` must match the flag the target passes to render().
-#let jobs-for(tag, full: false) = {
+//
+// `patch` is a hook for one-off targets: a per-job mapper (or an array of them,
+// applied in order) run over the raw history before resolution. Keep such
+// tweaks in the target file, not here — see lib/overrides.typ.
+#let jobs-for(tag, full: false, patch: none) = {
   let tail = if full { older-jobs } else { (earlier-career,) }
-  resolve-jobs(jobs + tail, tag)
+  let all = jobs + tail
+  if patch != none {
+    for step in (if type(patch) == array { patch } else { (patch,) }) {
+      all = all.map(step)
+    }
+  }
+  resolve-jobs(all, tag)
 }

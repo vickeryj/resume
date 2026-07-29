@@ -8,6 +8,7 @@ history, several targets — so a change to your experience updates every PDF.
 ```
 lib/template.typ        Presentation: layout, fonts, colors, section rendering
 lib/variants.typ        Per-target tagging (`variant(...)`) and its resolver
+lib/overrides.typ       Per-job override helpers for one-off tailorings
 content/
   profile.typ           Contact info, skills, education (shared);
                         role title and summary (per target)
@@ -18,6 +19,7 @@ targets/                One file per output; picks a role angle + résumé vs CV
   Resume-VP.typ                  Condensed, for VP of Engineering roles
   Resume-PE-CV.typ               Full CV, framed for Principal Engineer
   Resume-VP-CV.typ               Full CV, framed for VP of Engineering
+  custom/                        One-off tailorings, excluded from the default build
 build.sh                Build driver
 build/                  Generated PDFs (git-ignored)
 ```
@@ -27,6 +29,7 @@ build/                  Generated PDFs (git-ignored)
 ```sh
 ./build.sh                     # build every target into build/
 ./build.sh Resume-VP           # build just one
+./build.sh custom/Acme-PE      # build a one-off tailoring (see below)
 ./build.sh --watch Resume-VP        # live-rebuild while editing
 ./build.sh --list              # list targets
 ./build.sh --publish           # build all, then copy PDFs to iCloud
@@ -148,3 +151,43 @@ angle, pick a new tag, add it to `role-title-by-target` and `summary-by-target`
 in `content/profile.typ`, and to the `variant(...)` calls where the wording
 should differ — anything untagged falls
 through to every target. `./build.sh` picks the file up automatically.
+
+## One-off tailorings
+
+For a tweak aimed at a single job posting — a retuned summary, a couple of
+rewritten bullets — you don't want a new `variant(...)` tag cluttering
+`content/`. That's what the tag system is *not* for: variants are for wording
+you'll reuse, one-offs are for a single application.
+
+Put those in `targets/custom/`. A file there is an ordinary target that starts
+from an existing angle and patches the resolved data before it reaches
+`render()`, so the tweak lives entirely in that one file. The build treats
+`targets/custom/` specially: `./build.sh` and `--publish` skip it (the target
+glob is top-level only) and the page diff is skipped, so your canonical résumés
+stay the committed, built-by-default set. Build one on demand with
+`./build.sh custom/<name>` or `--watch custom/<name>`.
+
+Copy [targets/custom/Example-PE.typ](targets/custom/Example-PE.typ) and edit.
+The summary, skills, and title are plain arguments you can override outright. To
+change a job's bullets, `content/experience.typ`'s `jobs-for(...)` takes a
+`patch:` hook — a per-job mapper (or an array of them) run over the history
+before it resolves. [lib/overrides.typ](lib/overrides.typ) provides
+`replace-highlights(company, ..bullets)`, which swaps a job's highlights for the
+ones you pass:
+
+```typ
+#import "../../lib/overrides.typ": replace-highlights
+
+jobs: jobs-for("pe", patch: replace-highlights(
+  "BuildOps",
+  "First bullet, rewritten for this posting.",
+  "Second bullet, rewritten for this posting.",
+)),
+```
+
+Pass an array to touch several jobs:
+`patch: (replace-highlights("BuildOps", …), replace-highlights("ShopKeep POS", …))`.
+`replace-highlights` is variant-aware: if the job's `highlights` is a whole
+`variant(...)`, it repoints every key present (and its `default`) at the new
+bullets, so a job's per-target gating survives — a tag the variant never
+mentioned still shows nothing.

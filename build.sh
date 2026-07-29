@@ -150,10 +150,16 @@ build_one() {
     echo "error: no such target '$name' (see ./build.sh --list)" >&2
     exit 1
   fi
-  mkdir -p "$OUT_DIR"
-  echo "building $name → $OUT_DIR/$name.pdf"
-  typst compile --root . "$src" "$OUT_DIR/$name.pdf"
-  diff_pages "$name"
+  local out="$OUT_DIR/$name.pdf"
+  mkdir -p "$(dirname "$out")"
+  echo "building $name → $out"
+  typst compile --root . "$src" "$out"
+  # Subdir targets (targets/custom/*) are one-off tailorings, excluded from the
+  # default build and gitignored; skip the page-diff baseline for them.
+  case "$name" in
+    */*) ;;
+    *) diff_pages "$name" ;;
+  esac
 }
 
 # Emit one <div class="band"> per changed region: the same page render cropped
