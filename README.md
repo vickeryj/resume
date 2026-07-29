@@ -31,10 +31,52 @@ build/                  Generated PDFs (git-ignored)
 ./build.sh --list              # list targets
 ./build.sh --publish           # build all, then copy PDFs to iCloud
 ./build.sh --clean             # delete build/
+./build.sh --open              # build all, then open the page diff in a browser
 ```
 
 `--publish` copies the built PDFs to `PUBLISH_DIR` (set at the top of
 `build.sh` — your iCloud Drive).
+
+## Page diffs
+
+Every build renders each page to a PNG under `build/.pages/` and compares it
+against the previous build, so the output says what actually moved:
+
+```
+building Resume-PE → build/Resume-PE.pdf
+  2 pages → 3 pages
+  changed pages: 2 3
+```
+
+When pages differ, `build/diff/index.html` gets written. Its default **changes**
+view finds the rows of the page that actually differ and crops just those out of
+the render, old above new — so you read the changed lines at full size instead of
+squinting at two overlaid pages:
+
+```
+REMOVED  TypeScript · Python · Ruby · Swift · Go · Scala · Kubernetes · Kafka · AWS
+ADDED    TypeScript · Python · Ruby · Swift · Go · Scala · Kafka · AWS
+```
+
+The other views answer *where on the page* rather than *what*:
+
+- **tinted page** — the whole page with ink present in only the old render in
+  red, only the new in green, and unchanged ink in black.
+- **difference** — raw `mix-blend-mode: difference`; identical pixels go black
+  and movement glows. The brighten toggle helps with faint shifts.
+- **side by side**, **before**, **after** — plain renders.
+
+Zoom applies to every view, and `--open` (first argument, combinable with a
+target name) opens the report automatically.
+
+Cropping the changed rows uses [tools/pagediff.py](tools/pagediff.py), which
+needs `python3` and macOS's `sips`. Without them the report still builds — it
+just falls back to the whole-page views.
+
+The PDFs themselves are not comparable byte-for-byte: Typst embeds a timestamp,
+so every build produces different bytes. The page renders are deterministic,
+which is what makes the comparison exact. Changing `DIFF_PPI` in `build.sh`
+invalidates the cached renders and re-baselines on the next build.
 
 Requires [Typst](https://typst.app): `brew install typst`.
 
