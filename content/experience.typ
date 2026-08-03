@@ -106,7 +106,7 @@
     location: "New York, NY",
     start: "Jun 2016",
     end: "Oct 2020",
-    lead: "Joined to build the company's first iOS app; invited to take over engineering after the first release. Led the department for four years while staying hands-on in the codebase.",
+    lead: "Hired as a staff engineer to build the company's first iOS app; promoted to VP of Engineering, then CTO. Led the department for four years while staying hands-on in the codebase.",
     highlights: variant(
       vpe: (
         "Grew engineering from 4 to 25 engineers across three teams, hiring and developing 3 engineering managers, and building the interview and leveling processes to support the growth.",
