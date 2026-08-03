@@ -33,3 +33,23 @@
     }
   }
 }
+
+// Replace the lead paragraph of a job with `body`.
+//
+// `key` matches either the job's `company` or its `heading` — the latter so the
+// headingless-company entries (`earlier-career`) can be reframed too. Variant
+// leads are repointed key by key, exactly as `replace-highlights` does.
+#let replace-lead(key, body) = job => {
+  if key not in (job.at("company", default: none), job.at("heading", default: none)) {
+    job
+  } else {
+    let cur = job.at("lead", default: none)
+    if type(cur) == dictionary and "__variant" in cur {
+      let choices = (:)
+      for (k, _) in cur.__variant { choices.insert(k, body) }
+      job + (lead: variant(..choices))
+    } else {
+      job + (lead: body)
+    }
+  }
+}

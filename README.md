@@ -185,8 +185,16 @@ jobs: jobs-for("pe", patch: replace-highlights(
 )),
 ```
 
+`replace-lead(key, body)` does the same for the paragraph under the heading. Its
+`key` matches a job's `company` *or* its `heading`, so the headingless
+`earlier-career` entry can be reframed too:
+
+```typ
+replace-lead("Earlier Career — 2002 - 2013", "Rewritten for this posting.")
+```
+
 Pass an array to touch several jobs:
-`patch: (replace-highlights("BuildOps", …), replace-highlights("ShopKeep POS", …))`.
+`patch: (replace-highlights("BuildOps", …), replace-lead("ShopKeep POS", …))`.
 `replace-highlights` is variant-aware: if the job's `highlights` is a whole
 `variant(...)`, it repoints every key present (and its `default`) at the new
 bullets, so a job's per-target gating survives — a tag the variant never
